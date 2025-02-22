@@ -1449,6 +1449,7 @@ public BotStatus()
 
 public OnGameModeInit()
 {	
+	SetTimer("RestockComponents", 43200000, true); // 12 jam
 	SetTimer("RestartServer", 60000, false);
 	SetTimer("BotStatus", 1000, true);
 	new MySQLOpt: option_id = mysql_init_options();
@@ -7644,4 +7645,24 @@ public OnPlayerClickPlayer(playerid, clickedplayerid, source)
     }
     return 1;
 }
+
+forward RestockComponents();
+public RestockComponents()
+{
+    Component = 1000; // Atur ulang stok component ke jumlah yang diinginkan
+    SendClientMessageToAll(-1, "[INFO] Component telah diisi ulang!");
+
+	new query[128];
+    format(query, sizeof(query), "UPDATE server SET component = %d", Component);
+    mysql_tquery(g_SQL, query);
+}
+
+/*public RestockComponents()
+{
+    Component = 1000;
+    new query[128];
+    format(query, sizeof(query), "UPDATE components SET stock = %d", Component);
+    mysql_tquery(connection, query);
+    SendClientMessageToAll(-1, "[INFO] Component telah diisi ulang!");
+}*/
 
