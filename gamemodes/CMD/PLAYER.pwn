@@ -912,7 +912,7 @@ CMD:claimpv(playerid, params[])
 
 CMD:sellpv(playerid, params[])
 {
-	if(!IsPlayerInRangeOfPoint(playerid, 3.0, -2490.4092,793.7272,35.2206)) return Error(playerid, "Kamu harus berada di Kantor Insurance!");
+	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 2792.800293, -1087.574097, 30.718750)) return Error(playerid, "Kamu harus berada di Kantor Insurance!");
 	
 	new vehid;
 	if(sscanf(params, "d", vehid)) return Usage(playerid, "/sellpv [vehid] | /mypv - for find vehid");
@@ -1927,8 +1927,8 @@ CMD:use(playerid, params[])
 
 			if(pData[playerid][pHealth] >= 100) return Error(playerid, "your health is 100%!");
 			
-			// new Float:darah;
-			// GetPlayerHealth(playerid, darah);
+			new Float:darah;
+			GetPlayerHealth(playerid, darah);
 			pData[playerid][pBandage]--;
 			SetPlayerHealthEx(playerid, 100);
 			Info(playerid, "You have successfully applied the bandage.");
