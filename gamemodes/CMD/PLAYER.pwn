@@ -711,14 +711,14 @@ CMD:newidcard(playerid, params[])
 {
 	if(!IsPlayerInRangeOfPoint(playerid, 3.0, 361.83, 173.679, 1008.68)) return Error(playerid, "Anda harus berada di City Hall!");
 	if(pData[playerid][pIDCard] != 0) return Error(playerid, "Anda sudah memiliki ID Card!");
-	if(GetPlayerMoney(playerid) < 300) return Error(playerid, "Anda butuh $300 untuk membuat ID Card");
+	if(GetPlayerMoney(playerid) < 200) return Error(playerid, "Anda butuh $200 untuk membuat ID Card");
 	new sext[40], mstr[128];
 	if(pData[playerid][pGender] == 1) { sext = "Laki-Laki"; } else { sext = "Perempuan"; }
 	format(mstr, sizeof(mstr), "{FFFFFF}Nama: %s\nNegara: San Andreas\nTgl Lahir: %s\nJenis Kelamin: %s\nBerlaku hingga 14 hari!", pData[playerid][pName], pData[playerid][pAge], sext);
 	ShowPlayerDialog(playerid, DIALOG_UNUSED, DIALOG_STYLE_MSGBOX, "ID-Card", mstr, "Tutup", "");
 	pData[playerid][pIDCard] = 1;
-	pData[playerid][pIDCardTime] = gettime() + (30 * 86400);
-	GivePlayerMoneyEx(playerid, -300);
+	pData[playerid][pIDCardTime] = gettime() + (31 * 86400);
+	GivePlayerMoneyEx(playerid, -200);
 	Server_AddMoney(25);
 	return 1;
 }
@@ -3693,10 +3693,10 @@ CMD:newweaponlic(playerid, params[])
 {
 	if(!IsPlayerInRangeOfPoint(playerid, 3.0, -2578.5625, -1383.2179, 1500.7570)) return Error(playerid, "Anda harus berada di Kantor SAPD!");
 	if(pData[playerid][pDriveLic] != 0) return Error(playerid, "Anda sudah memiliki Weapon License!");
-	if(GetPlayerMoney(playerid) < 4000) return Error(playerid, "Anda butuh $4,000 untuk membuat Weapon License.");
+	if(GetPlayerMoney(playerid) < 5000) return Error(playerid, "Anda butuh $5,000 untuk membuat Weapon License.");
 	pData[playerid][pWeaponLic] = 1;
 	pData[playerid][pWeaponLicTime] = gettime() + (30 * 86400);
-	GivePlayerMoneyEx(playerid, -4000);
+	GivePlayerMoneyEx(playerid, -5000);
 	Server_AddMoney(4000);
 	return 1;
 }
