@@ -543,7 +543,7 @@ function EngineStatus(playerid, vehicleid)
 	}
 	else
 	{
-		//SendNearbyMessage(playerid, 30.0, COLOR_PURPLE, "** %s mematikan mesin kendaraan %s.", ReturnName(playerid, 0), GetVehicleNameVehicle(GetPlayerVehicleID(playerid)));
+		//SendNearbyMessage(playerid, 30.0, COLOR_PURPLE, "** %s mematikan mesin kendaraan %s.", ReturnName(playerid, 0), GetVehicleModelName(GetVehicleModel(vID)));
 		SwitchVehicleEngine(vehicleid, false);
 		//Info(playerid, "Engine turn off..");
 		InfoTD_MSG(playerid, 4000, "Vehicle Engine ~r~OFF");
