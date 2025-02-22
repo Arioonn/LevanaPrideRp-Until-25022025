@@ -2,8 +2,8 @@ CMD:phone(playerid, params[])
 {
 	if(pData[playerid][pPhone] == 0) return Error(playerid, "Anda tidak memiliki Ponsel!");
 	
-	new str[512], info[512];
-	format(str, sizeof(str), "GPS\nCall Number\nMessage Number\nMy Contact\nCalculator\nPhone Status");
+	new str[800], info[800];
+	format(str, sizeof(str), "GPS\nCall Number\nMessage Number\nMy Contact\nBanking\nCalculator\nPhone Status");
 	strcat(info, str);
 
 	ShowPlayerDialog(playerid, DIALOG_PHONE_TEKS, DIALOG_STYLE_LIST, "Phone", info, "Select", "Close");
