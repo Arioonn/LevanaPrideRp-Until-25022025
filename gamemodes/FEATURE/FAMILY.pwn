@@ -706,9 +706,11 @@ CMD:finfo(playerid, params[])
 CMD:flist(playerid)
 {
 	new line1[1200];
-	strcat(line1, ""LB_E"1: "YELLOW_E"Rollins Crips 60s\n");
-	strcat(line1, ""LB_E"2: "YELLOW_E"Westcoast\n");
-   	ShowPlayerDialog(playerid, DIALOG_UNUSED, DIALOG_STYLE_MSGBOX, ""ORANGE_E"One Pride:RP: "WHITE_E"Official Family", line1, "OK", "");
+	strcat(line1, ""LB_E"1: "YELLOW_E"None\n");
+	strcat(line1, ""LB_E"2: "YELLOW_E"None\n");
+	strcat(line1, ""LB_E"3: "YELLOW_E"None\n");
+	strcat(line1, ""LB_E"4: "YELLOW_E"None\n");
+   	ShowPlayerDialog(playerid, DIALOG_UNUSED, DIALOG_STYLE_MSGBOX, ""ORANGE_E"Levana Pride:RP: "WHITE_E"Official Family", line1, "OK", "");
 	return 1;
 }
 

@@ -52,7 +52,7 @@ function LoadPark()
  		new id, i = 0, str[1000];
 		while(i < rows)
 		{
-			format(str, sizeof(str), "[ID: %d]\n{ffffff}Location: %s"YELLOW_E"'ALT' "WHITE_E"untuk menyimpan/menggambil kendaraan", id, GetLocation(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ]));
+			format(str, sizeof(str), "[ID: %d]\n{ffffff}Location: %s\n"YELLOW_E"'ALT' "WHITE_E"untuk menyimpan/menggambil kendaraan", id, GetLocation(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ]));
 		    cache_get_value_name_int(i, "id", id);
 			cache_get_value_name_float(i, "posx", ppData[id][parkX]);
 			cache_get_value_name_float(i, "posy", ppData[id][parkY]);
