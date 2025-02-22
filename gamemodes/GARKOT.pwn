@@ -286,6 +286,8 @@ CMD:parkveh(playerid)
 						GetVehiclePos(pvData[ii][cVeh], pvData[ii][cPosX], pvData[ii][cPosY], pvData[ii][cPosZ]);
 		                GetVehicleZAngle(pvData[ii][cVeh], pvData[ii][cPosA]);
 		                GetVehicleHealth(pvData[ii][cVeh], pvData[ii][cHealth]);
+						SetVehicleFuel(pvData[ii][cVeh], pvData[ii][cFuel]);
+						//GetVehicleFuel(pvData[ii][cVeh], pvData[ii][cFuel]);
 		                PlayerPlaySound(playerid, 1145, 0.0, 0.0, 0.0);
 						SetPlayerArmedWeapon(playerid, 0);
 						if(IsValidVehicle(vehid))
@@ -352,7 +354,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}	
 		}
 	}
-	if(PRESSED(KEY_CROUCH) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+	if(PRESSED(KEY_CTRL_BACK) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
 	{
 		foreach(new i : Parks)
 		{
