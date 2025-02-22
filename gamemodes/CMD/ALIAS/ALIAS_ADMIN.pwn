@@ -35,6 +35,7 @@ alias:sethp("sethealth", "setheal")
 alias:setam("setarmour", "setarmor")
 
 //Admin Level 1
+alias:aod("aduty")
 alias:acmds("ahelp", "ah")
 alias:hcmds("hhelp", "hh")
 alias:aitems("aitem", "ainv", "ainventory")
