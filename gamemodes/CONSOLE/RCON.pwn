@@ -78,9 +78,9 @@ public UpdateProgress()
     {
         KillTimer(ProgressTimer);
         ProgressTimer = -1;
-        SendRconCommand("password MT");
+        SendRconCommand("password 0");
 
-        SendRconCommand("hostname Levana Pride Roleplay | MMT");
+        SendRconCommand("hostname Levana Pride Roleplay | ONTOP");
     }
     return 1;
 }
