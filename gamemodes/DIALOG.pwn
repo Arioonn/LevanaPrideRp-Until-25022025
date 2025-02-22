@@ -4683,7 +4683,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			case 4:
 			{
 				new str[3500];
-				strcat(str, "{ffffff}Pekerjaan ini dapat anda dapatkan di Las Venturas\n\n{BABABA}CMDS: {ffffff}//ore\n");
+				strcat(str, "{ffffff}Pekerjaan ini dapat anda dapatkan di Las Venturas\n\n{BABABA}CMDS: {ffffff}/ore\n");
 				ShowPlayerDialog(playerid, DIALOG_UNUSED, DIALOG_STYLE_MSGBOX, "Miner Job", str, "Close", "");
 			}
 			case 5:
@@ -15113,9 +15113,15 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				case 4:
 				{
-					return callcmd::calculatorteks(playerid);
+					new tstr[800];
+					format(tstr, sizeof(tstr), ""LB_E"Number Card: "GREY_E"%d", pData[playerid][pBankRek]);
+					return ShowPlayerDialog(playerid, DIALOG_ATM, DIALOG_STYLE_LIST, tstr, "Check Balance\nWithdraw Money\nTransfer Money\nSign Paycheck", "Select", "Cancel");
 				}
 				case 5:
+				{
+					return callcmd::calculatorteks(playerid);
+				}
+				case 6:
 				{
 					return callcmd::togphone(playerid);
 				}
