@@ -52,7 +52,7 @@ function LoadPark()
  		new id, i = 0, str[1000];
 		while(i < rows)
 		{
-			format(str, sizeof(str), "[ID: %d]\n{ffffff}Location: %s"YELLOW_E"\n'H' "WHITE_E"untuk menyimpan kendaraan\n"YELLOW_E"'ALT' "WHITE_E"untuk menggambil kendaraan", id, GetLocation(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ]));
+			format(str, sizeof(str), "[ID: %d]\n{ffffff}Location: %s"YELLOW_E"'ALT' "WHITE_E"untuk menyimpan/menggambil kendaraan", id, GetLocation(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ]));
 		    cache_get_value_name_int(i, "id", id);
 			cache_get_value_name_float(i, "posx", ppData[id][parkX]);
 			cache_get_value_name_float(i, "posy", ppData[id][parkY]);
@@ -114,7 +114,7 @@ CMD:createpark(playerid, params[])
 	ppData[id][parkWorld] = GetPlayerVirtualWorld(playerid);
 	
 	new str[1000];
-	format(str, sizeof(str), "[ID: %d]\n{ffffff}Location: %s"GREY_E"\n"YELLOW_E"'H' "WHITE_E"untuk menyimpan kendaraan\n"YELLOW_E"'ALT' "WHITE_E"untuk menggambil kendaraan", id, GetLocation(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ]));
+	format(str, sizeof(str), "[ID: %d]\n{ffffff}Location: %s"GREY_E"\n"YELLOW_E"'ALT' "WHITE_E"untuk menyimpan/menggambil kendaraan", id, GetLocation(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ]));
 	ppData[id][parkPickup] = CreateDynamicPickup(19134, 23, ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ], ppData[id][parkWorld],  ppData[id][parkInt], -1, 50);
 	ppData[id][parkLabel] = CreateDynamic3DTextLabel(str, ARWIN, ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ] + 0.3, 10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, ppData[id][parkWorld], ppData[id][parkInt], -1, 10.0);
 	ppData[id][parkMap] = CreateDynamicMapIcon(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ], 55, -1, -1, -1, -1, 100.0);
@@ -163,7 +163,7 @@ CMD:setparkpos(playerid, params[])
 
 	
 	new str[128];
-	format(str, sizeof(str), "[ID: %d]\n{ffffff}Location: %s"GREY_E"\n"YELLOW_E"'H' "WHITE_E"untuk menyimpan kendaraan\n"YELLOW_E"'ALT' "WHITE_E"untuk menggambil kendaraan", id, GetLocation(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ]));
+	format(str, sizeof(str), "[ID: %d]\n{ffffff}Location: %s"GREY_E"\n"YELLOW_E"'ALT' "WHITE_E"untuk menyimpan/menggambil kendaraan", id, GetLocation(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ]));
 	ppData[id][parkPickup] = CreateDynamicPickup(19134, 23, ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ], ppData[id][parkWorld],  ppData[id][parkInt], -1, 50);
 	ppData[id][parkLabel] = CreateDynamic3DTextLabel(str, ARWIN, ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ] + 0.3, 10.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1, ppData[id][parkWorld], ppData[id][parkInt], -1, 10.0);
 	ppData[id][parkMap] = CreateDynamicMapIcon(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ], 55, -1, -1, -1, -1, 100.0);
@@ -354,7 +354,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}	
 		}
 	}
-	if(PRESSED(KEY_CTRL_BACK) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+	if(PRESSED(KEY_WALK) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
 	{
 		foreach(new i : Parks)
 		{
