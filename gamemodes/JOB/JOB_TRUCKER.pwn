@@ -193,12 +193,12 @@ CMD:storegas(playerid, params[])
 	return 1;
 }
 
-CMD:creat(playerid, params[])
+CMD:boxcomp(playerid, params[])
 {
 	if(pData[playerid][pJob] == 4 || pData[playerid][pJob2] == 4)
 	{
 		if(IsPlayerInAnyVehicle(playerid)) return Error(playerid, "Anda harus keluar dari kendaraan.");
-		if(isnull(params)) return Usage(playerid, "/creat [buy/store/load/unload/pickup]");
+		if(isnull(params)) return Usage(playerid, "/boxcomp [buy/store/load/unload/pickup]");
 		
 		if(!strcmp(params, "buy", true))
 		{
