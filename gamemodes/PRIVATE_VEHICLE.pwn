@@ -5,7 +5,7 @@
 #define MAX_PLAYER_VEHICLE 3
 //new Float: VehicleFuel[MAX_VEHICLES] = 100.0;
 new bool:VehicleHealthSecurity[MAX_VEHICLES] = false, Float:VehicleHealthSecurityData[MAX_VEHICLES] = 1000.0;
-new AdminVehicle[MAX_VEHICLES char], PolisiVeh[MAX_VEHICLES char], SamdVeh[MAX_VEHICLES char];
+new AdminVehicle[MAX_VEHICLES char], GovVeh[MAX_VEHICLES char], PolisiVeh[MAX_VEHICLES char], SamdVeh[MAX_VEHICLES char];
 
 enum pvdata
 {
