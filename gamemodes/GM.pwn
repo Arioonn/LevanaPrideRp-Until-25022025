@@ -115,7 +115,7 @@ new MaxRedTeam = 5,
 	MaxBlueTeam = 5;
 new IsAtEvent[MAX_PLAYERS];
 
-new AntiBHOP[MAX_PLAYERS];
+//new AntiBHOP[MAX_PLAYERS];
 //new cbugwarn[MAX_PLAYERS];
 
 new stresstimer[MAX_PLAYERS];
@@ -487,6 +487,7 @@ enum
 	ST_COMPONENT2,
 	ST_MATERIAL,
 	ST_MATERIAL2,
+	DIALOG_PVSAGS,
 	DIALOG_PVSAPD,
 	DIALOG_PVSAMD,
 	DIALOG_STREAMERSETTINGS,
@@ -1448,7 +1449,8 @@ public BotStatus()
 }
 
 public OnGameModeInit()
-{	
+{
+	//SetTimer("DecreaseHungerAndThirst", 60000, true); // Setiap 60 detik
 	SetTimer("RestockComponents", 43200000, true); // 12 jam
 	SetTimer("RestartServer", 60000, false);
 	SetTimer("BotStatus", 1000, true);
@@ -1658,16 +1660,20 @@ public OnGameModeInit()
 	CreateDynamic3DTextLabel(strings, COLOR_ORANGE2, -427.3773, -392.3799, 16.5802, 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1); // pencucian uang haram
 
 	CreateDynamicPickup(1239, 23, 2033.2816,-1428.9435,17.0132, -1);
-	format(strings, sizeof(strings), "[SAMD VEHICLE]\n{FFFFFF}/samdvehicle\n Vehicle For SAMD");
+	format(strings, sizeof(strings), "[SAMD GARAGE]\n{FFFFFF}/samdvehicle\n Vehicle For SAMD");
 	CreateDynamic3DTextLabel(strings, COLOR_LBLUE, 2033.2816,-1428.9435,17.0132, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1); //samd vehicle
 
 	CreateDynamicPickup(1239, 23, 2014.4462,-1412.3612,16.9922, -1);
-	format(strings, sizeof(strings), "[SAMD PARKING]\n{FFFFFF}/samdparking\n Parking For SAPD");
+	format(strings, sizeof(strings), "[SAMD GARAGE]\n{FFFFFF}/samdparking\n Parking For SAMD");
 	CreateDynamic3DTextLabel(strings, COLOR_LBLUE,  2014.4462,-1412.3612,16.9922, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1); //sapd parking
 
 	CreateDynamicPickup(1239, 23, 1602.9182,-1644.2645,13.3311, -1);
-	format(strings, sizeof(strings), "[SAPD VEHICLE]\n{FFFF00}/sapdvehicle {FFFFFF}-Untuk mengambil Kendaraan SAPD\n{FFFF00}/sapdparking {FFFFFF}-Untuk memarkirkan Kendaraan SAPD");
-	CreateDynamic3DTextLabel(strings, COLOR_LBLUE, 1602.9182,-1644.2645,13.3311, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1); //sapd vehicle
+	format(strings, sizeof(strings), "[SAPD GARAGE]\n{FFFF00}/sapdvehicle {FFFFFF}-Untuk mengambil Kendaraan SAPD\n{FFFF00}/sapdparking {FFFFFF}-Untuk memarkirkan Kendaraan SAPD");
+	CreateDynamic3DTextLabel(strings, COLOR_BLUE, 1602.9182,-1644.2645,13.3311, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1); //sapd vehicle
+
+	CreateDynamicPickup(1239, 23, 1271.29, -2021.10, 59.09, -1);
+	format(strings, sizeof(strings), "[SAGS GARAGE]\n{FFFF00}/spawngs {FFFFFF}-Untuk mengambil Kendaraan SAGS\n{FFFF00}/despawngs {FFFFFF}-Untuk memarkirkan Kendaraan SAGS");
+	CreateDynamic3DTextLabel(strings, COLOR_LBLUE, 1271.29, -2021.10, 59.09, 3.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1); //sags vehicle
 
 	
 	//-----[ Dynamic Checkpoint ]-----	
@@ -2543,7 +2549,7 @@ public OnPlayerConnect(playerid)
 	new PlayerIP[16], country[MAX_COUNTRY_LENGTH], city[MAX_CITY_LENGTH];
 	g_MysqlRaceCheck[playerid]++;
 	pemainic++;
-	AntiBHOP[playerid] = 0;
+	//AntiBHOP[playerid] = 0;
 	IsAtEvent[playerid] = 0;
 	takingselfie[playerid] = 0;
 	pData[playerid][pDriveLicApp] = 0;
@@ -2658,6 +2664,12 @@ public OnPlayerConnect(playerid)
 public OnPlayerDisconnect(playerid, reason)
 {
 	//Pengganti IsValidTimer5555555555555
+
+	PlayerTextDrawHide(playerid, TD_INJURED[playerid][0]);
+	PlayerTextDrawHide(playerid, TD_INJURED[playerid][1]);
+	PlayerTextDrawHide(playerid, TD_INJURED[playerid][2]);
+	PlayerTextDrawHide(playerid, TD_INJURED[playerid][3]);
+	PlayerTextDrawHide(playerid, TD_INJURED[playerid][4]);
 
 	pData[playerid][pProductingStatus] = 0;
 	pData[playerid][pCookingStatus] = 0;
@@ -5235,7 +5247,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			CallLocalFunction("OnPlayerJump", "i", playerid);
 		}
 	}
-    if((newkeys & KEY_JUMP) && !IsPlayerInAnyVehicle(playerid))
+   /* if((newkeys & KEY_JUMP) && !IsPlayerInAnyVehicle(playerid))
     {
         AntiBHOP[playerid] ++;
         if(pData[playerid][pRFoot] <= 70 || pData[playerid][pLFoot] <= 70)
@@ -5274,7 +5286,7 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
         	}
         	return 1;
         }
-    }
+    }*/
 	if(GetPlayerState(playerid) == PLAYER_STATE_ONFOOT && (newkeys & KEY_NO))
 	{
 	    if(pData[playerid][CarryingLumber])
@@ -5624,6 +5636,16 @@ public OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 					}
 				}
 			}	
+		}
+	}
+	if(PRESSED( KEY_YES ))
+	{
+		if(pData[playerid][pInjured] == 1 && pData[playerid][pHospital] != 1)
+		{
+			//foreach(new did : Injured)
+			{
+				return callcmd::death(playerid, "");
+			}
 		}
 	}
 	if(PRESSED( KEY_YES ))
@@ -6101,7 +6123,7 @@ public OnPlayerWeaponShot(playerid, weaponid, hittype, hitid, Float:fX, Float:fY
 	return 1;
 }
 
-//ANTICBUG
+/*//ANTICBUG
 stock IsACBUGWeapon(playerid)
 {
 	if (IsPlayerConnected(playerid))
@@ -6110,7 +6132,7 @@ stock IsACBUGWeapon(playerid)
 	    if (Lenzwp == 24 || Lenzwp == 25 || Lenzwp == 27 || Lenzwp == 34 ) return 1 ;
 	}
 	return 0 ;
-}
+}*/
 
 stock GivePlayerHealth(playerid,Float:Health)
 {
@@ -6476,7 +6498,6 @@ ptask PlayerVehicleUpdate[200](playerid)
 		}
 	}
 }
-
 ptask PlayerUpdate[999](playerid)
 {
 	//Anti-Cheat Vehicle health hack
@@ -6638,7 +6659,6 @@ ptask PlayerUpdate[999](playerid)
 			SetPlayerHealthEx(playerid, 100);
 		}*/
 	}
-
 	if(pData[playerid][pHBEMode] == 1 && pData[playerid][IsLoggedIn] == true) //HBE Modern
 	{
 		new Float:hunger, Float:energy, Float:stress;
@@ -6654,17 +6674,23 @@ ptask PlayerUpdate[999](playerid)
 		PlayerTextDrawTextSize(playerid,BLADDER[playerid], stress, 7.0);
 	 	PlayerTextDrawShow(playerid,BLADDER[playerid]);
 	}
-	if(pData[playerid][pHBEMode] == 2 && pData[playerid][IsLoggedIn] == true) //HBE Simple
-	{
-		new Float:hunger, Float:energy;
-	 	hunger = pData[playerid][pHunger] * 60.0/100;
-		PlayerTextDrawTextSize(playerid, JGMHUNGER[playerid], hunger, 7.0); //Seusain in aja size nya sama di textdraw nya
-	 	PlayerTextDrawShow(playerid, JGMHUNGER[playerid]);
-	 	
-	 	energy = pData[playerid][pEnergy] * 60.0/100;
-		PlayerTextDrawTextSize(playerid, JGMTHIRST[playerid], energy, 7.0); //Seusain in aja size nya sama di textdraw nya
-	 	PlayerTextDrawShow(playerid, JGMTHIRST[playerid]);
-	}
+	if (pData[playerid][pHBEMode] == 2 )
+    {
+        new hunger[62], drink[62], vehh[20], veh[20];
+		if(pData[playerid][pHunger] <= 100) veh = "~g~";
+		else if(pData[playerid][pHunger] <= 70) veh = "~y~";
+		else if(pData[playerid][pHunger] <= 45) veh = "~r~";
+
+		if(pData[playerid][pEnergy] <= 100) vehh = "~g~";
+		else if(pData[playerid][pEnergy] <= 70) vehh = "~y~";
+		else if(pData[playerid][pEnergy] <= 45) vehh = "~r~";
+		
+		format(hunger, sizeof(hunger), "%0.0f%", pData[playerid][pHunger]);
+		PlayerTextDrawSetString(playerid, JGMHUNGER[playerid], hunger);
+
+		format(drink, sizeof(drink), "%0.0f%", pData[playerid][pEnergy]);
+		PlayerTextDrawSetString(playerid, JGMTHIRST[playerid], drink);
+    }
 	if(pData[playerid][pHospital] == 1)
     {
 		if(pData[playerid][pInjured] == 1)
@@ -6723,9 +6749,14 @@ ptask PlayerUpdate[999](playerid)
     }
 	if(pData[playerid][pInjured] == 1 && pData[playerid][pHospital] != 1)
     {
-		new mstr[64];
+		PlayerTextDrawShow(playerid, TD_INJURED[playerid][0]);
+	    PlayerTextDrawShow(playerid, TD_INJURED[playerid][1]);
+	    PlayerTextDrawShow(playerid, TD_INJURED[playerid][2]);
+	    PlayerTextDrawShow(playerid, TD_INJURED[playerid][3]);
+	    PlayerTextDrawShow(playerid, TD_INJURED[playerid][4]);
+		/*new mstr[64];
 		format(mstr, sizeof(mstr), "/death for spawn to hospital");
-		InfoTD_MSG(playerid, 1000, mstr);
+		InfoTD_MSG(playerid, 1000, mstr);*/
 		if(GetPVarInt(playerid, "GiveUptime") == -1)
 		{
 			SetPVarInt(playerid, "GiveUptime", gettime());
@@ -6744,6 +6775,11 @@ ptask PlayerUpdate[999](playerid)
     }
 	if(pData[playerid][pInjured] == 0 && pData[playerid][pGender] != 0) //Pengurangan Data
 	{
+		PlayerTextDrawHide(playerid, TD_INJURED[playerid][0]);
+	    PlayerTextDrawHide(playerid, TD_INJURED[playerid][1]);
+	    PlayerTextDrawHide(playerid, TD_INJURED[playerid][2]);
+	    PlayerTextDrawHide(playerid, TD_INJURED[playerid][3]);
+	    PlayerTextDrawHide(playerid, TD_INJURED[playerid][4]);
 		if(++ pData[playerid][pHungerTime] >= 150)
         {
             if(pData[playerid][pHunger] > 0)
@@ -6859,7 +6895,7 @@ ptask PlayerUpdate[999](playerid)
 	}
 }
 
-forward AppuieJump(playerid);
+/*forward AppuieJump(playerid);
 public AppuieJump(playerid)
 {
     AntiBHOP[playerid] = 0;
@@ -6871,7 +6907,7 @@ public AppuiePasJump(playerid)
 {
     AntiBHOP[playerid] = 0;
     return 1;
-}
+}*/
 /*
 public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[]) {
     if (dialogid == 0) 
