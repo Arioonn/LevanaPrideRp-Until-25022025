@@ -52,7 +52,7 @@ function LoadPark()
  		new id, i = 0, str[1000];
 		while(i < rows)
 		{
-			format(str, sizeof(str), "[ID: %d]\n{ffffff}Location: %s\n"YELLOW_E"'ALT' "WHITE_E"untuk menyimpan/menggambil kendaraan", id, GetLocation(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ]));
+			format(str, sizeof(str), "[ID: %d]\n{ffffff}Location: %s\n"YELLOW_E"'Y' "WHITE_E"untuk menyimpan Kendaraan\n"YELLOW_E"'ALT' "WHITE_E"untuk menyimpan/menggambil kendaraan", id, GetLocation(ppData[id][parkX], ppData[id][parkY], ppData[id][parkZ]));
 		    cache_get_value_name_int(i, "id", id);
 			cache_get_value_name_float(i, "posx", ppData[id][parkX]);
 			cache_get_value_name_float(i, "posy", ppData[id][parkY]);
@@ -287,7 +287,6 @@ CMD:parkveh(playerid)
 		                GetVehicleZAngle(pvData[ii][cVeh], pvData[ii][cPosA]);
 		                GetVehicleHealth(pvData[ii][cVeh], pvData[ii][cHealth]);
 						SetVehicleFuel(pvData[ii][cVeh], pvData[ii][cFuel]);
-						//GetVehicleFuel(pvData[ii][cVeh], pvData[ii][cFuel]);
 		                PlayerPlaySound(playerid, 1145, 0.0, 0.0, 0.0);
 						SetPlayerArmedWeapon(playerid, 0);
 						if(IsValidVehicle(vehid))
@@ -354,7 +353,7 @@ hook OnPlayerKeyStateChange(playerid, newkeys, oldkeys)
 			}	
 		}
 	}
-	if(PRESSED(KEY_WALK) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+	if(PRESSED(KEY_YES) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
 	{
 		foreach(new i : Parks)
 		{
