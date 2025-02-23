@@ -444,8 +444,8 @@ CMD:death(playerid, params[])
 	if(pData[playerid][pArrest] > 0)
 		return Error(playerid, "Kamu tidak bisa melakukan ini saat tertangkap polisi!");
 
-    if((gettime()-GetPVarInt(playerid, "GiveUptime")) < 100)
-        return Error(playerid, "Kamu harus menunggu 3 menit untuk kembali kerumah sakit");
+    if((gettime()-GetPVarInt(playerid, "GiveUptime")) < 600)
+        return Error(playerid, "Kamu harus menunggu 10 menit untuk kembali kerumah sakit");
         
 	/*if(pMatiPukul[playerid] == 1)
 	{
@@ -1697,13 +1697,13 @@ CMD:give(playerid, params[])
 		}
 		else if(strcmp(name,"milk",true) == 0) 
 		{
-			if(pData[playerid][pSusu] < ammount)
+			if(pData[playerid][pSusuGO] < ammount)
 				return Error(playerid, "Item anda tidak cukup.");
 
 			if(ammount < 1) return Error(playerid, "Can't Give below 1");
 			
-			pData[playerid][pSusu] -= ammount;
-			pData[otherid][pSusu] += ammount;
+			pData[playerid][pSusuGO] -= ammount;
+			pData[otherid][pSusuGO] += ammount;
 			Info(playerid, "Anda telah berhasil memberikan milk kepada %s sejumlah %d.", ReturnName(otherid), ammount);
 			Info(otherid, "%s telah berhasil memberikan milk kepada anda sejumlah %d.", ReturnName(playerid), ammount);
 			ApplyAnimation(playerid, "DEALER", "shop_pay", 4.0, 0, 0, 0, 0, 0);
