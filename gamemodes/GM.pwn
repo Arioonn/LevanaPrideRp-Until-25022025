@@ -2950,9 +2950,12 @@ SetPlayerSpawn(playerid)
 		else
 		{
 			SetPlayerColor(playerid, COLOR_WHITE);
-			TextDrawShowForPlayer(playerid, NamaServerNew[0]);
+			/*TextDrawShowForPlayer(playerid, NamaServerNew[0]);
 			TextDrawShowForPlayer(playerid, NamaServerNew[1]);
-			TextDrawShowForPlayer(playerid, NamaServerNew[2]);
+			TextDrawShowForPlayer(playerid, NamaServerNew[2]);*/
+
+			TextDrawShowForPlayer(playerid, NamaServerByExe[0]);
+			TextDrawShowForPlayer(playerid, NamaServerByExe[1]);
 			if(pData[playerid][pHBEMode] == 1) //HBE Modern
 			{
 				PlayerTextDrawShow(playerid, FOOD[playerid]);

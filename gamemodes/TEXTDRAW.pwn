@@ -10,6 +10,7 @@ new Text:AnimationTD;
 
 //DevVinzz
 new PlayerText:TD_INJURED[MAX_PLAYERS][5];
+new Text:NamaServerByExe[2];
 new Text: TD_LOGINBYEXECUTIVEV2[4];
 new Text: TD_LOGINBYEXECUTIVE[5];
 new PlayerText:HbeJgrpCuy[MAX_PLAYERS][8];
@@ -109,6 +110,34 @@ new PlayerText:PlayerCrate[MAX_PLAYERS][2];
 CreatePlayerTextDraws(playerid) {
 
     //DevVinzz
+    NamaServerByExe[0] = TextDrawCreate(542.000000, 6.000000, "Levana Pride");
+	TextDrawFont(NamaServerByExe[0], 1);
+	TextDrawLetterSize(NamaServerByExe[0], 0.349999, 2.000000);
+	TextDrawTextSize(NamaServerByExe[0], 400.000000, 17.000000);
+	TextDrawSetOutline(NamaServerByExe[0], 1);
+	TextDrawSetShadow(NamaServerByExe[0], 0);
+	TextDrawAlignment(NamaServerByExe[0], 3);
+	TextDrawColor(NamaServerByExe[0], 16777215);
+	TextDrawBackgroundColor(NamaServerByExe[0], 255);
+	TextDrawBoxColor(NamaServerByExe[0], 50);
+	TextDrawUseBox(NamaServerByExe[0], 0);
+	TextDrawSetProportional(NamaServerByExe[0], 1);
+	TextDrawSetSelectable(NamaServerByExe[0], 0);
+	
+	NamaServerByExe[1] = TextDrawCreate(545.000000, 8.989996, "ROLEPLAY");
+	TextDrawFont(NamaServerByExe[1], 1);
+	TextDrawLetterSize(NamaServerByExe[1], 0.349999, 1.600000);
+	TextDrawTextSize(NamaServerByExe[1], 400.000000, 17.000000);
+	TextDrawSetOutline(NamaServerByExe[1], 1);
+	TextDrawSetShadow(NamaServerByExe[1], 0);
+	TextDrawAlignment(NamaServerByExe[1], 1);
+	TextDrawColor(NamaServerByExe[1], -1);
+	TextDrawBackgroundColor(NamaServerByExe[1], 255);
+	TextDrawBoxColor(NamaServerByExe[1], 50);
+	TextDrawUseBox(NamaServerByExe[1], 0);
+	TextDrawSetProportional(NamaServerByExe[1], 1);
+	TextDrawSetSelectable(NamaServerByExe[1], 0);
+
     TD_LOGINBYEXECUTIVEV2[0] = TextDrawCreate(319.000000, 110.000000, "_");
 	TextDrawFont(TD_LOGINBYEXECUTIVEV2[0], 1);
 	TextDrawLetterSize(TD_LOGINBYEXECUTIVEV2[0], 400.000000, 25.000000);
