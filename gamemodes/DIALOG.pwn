@@ -11649,7 +11649,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 		}
 	}
-	if(dialogid == DIALOG_ATM)
+	if(dialogid == DIALOG_BANKING)
 	{
 		if(!response) return 1;
 		switch(listitem)
@@ -11671,6 +11671,27 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				ShowPlayerDialog(playerid, DIALOG_BANKREKENING, DIALOG_STYLE_INPUT, ""GREY3_E"Bank", "Masukan jumlah uang:", "Transfer", "Cancel");
 			}
 			case 3: //Paycheck
+			{
+				DisplayPaycheck(playerid);
+			}
+		}
+	}
+	if(dialogid == DIALOG_ATM)
+	{
+		if(!response) return 1;
+		switch(listitem)
+		{
+			case 0: // Check Balance
+			{
+				new mstr[512];
+				format(mstr, sizeof(mstr), "{F6F6F6}You have {7fff00}%s {F6F6F6}in your bank account.", FormatMoney(pData[playerid][pBankMoney]));
+				ShowPlayerDialog(playerid, DIALOG_UNUSED, DIALOG_STYLE_MSGBOX, ""GREY3_E"Bank", mstr, "Close", "");
+			}
+			case 1: // Transfer Money
+			{
+				ShowPlayerDialog(playerid, DIALOG_BANKREKENING, DIALOG_STYLE_INPUT, ""GREY3_E"Bank", "Masukan jumlah uang:", "Transfer", "Cancel");
+			}
+			case 2: //Paycheck
 			{
 				DisplayPaycheck(playerid);
 			}
@@ -15128,7 +15149,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				{
 					new tstr[800];
 					format(tstr, sizeof(tstr), ""LB_E"Number Card: "GREY_E"%d", pData[playerid][pBankRek]);
-					return ShowPlayerDialog(playerid, DIALOG_ATM, DIALOG_STYLE_LIST, tstr, "Check Balance\nWithdraw Money\nTransfer Money\nSign Paycheck", "Select", "Cancel");
+					return ShowPlayerDialog(playerid, DIALOG_BANKING, DIALOG_STYLE_LIST, tstr, "Check Balance\nTransfer Money\nSign Paycheck", "Select", "Cancel");
 				}
 				case 5:
 				{
