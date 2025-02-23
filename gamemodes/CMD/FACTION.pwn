@@ -1856,6 +1856,31 @@ public TreatmentPlayer(playerid, otherid)
 	return 1;
 }
 
+CMD:spawngs(playerid) //sapd vehicle spawn
+{
+	if(pData[playerid][pFaction] != 2)
+	   return Error(playerid, "You dont have Faction Sags!");
+    if(!IsPlayerInRangeOfPoint(playerid, 3.0, 1271.29, -2021.10, 59.09)) return Error(playerid, "Anda harus berada di garasi sags!");
+	ShowPlayerDialog(playerid, DIALOG_PVSAGS, DIALOG_STYLE_LIST, "SAGS VEHICLE", "Sentinel\nStretch\nRancher SAGS\nFCR-900\nWayfarer\nMaverick", "Spawn", "Cancel");
+    return 1;
+}
+
+CMD:despawngs(playerid, params[])
+{
+	if(pData[playerid][pFaction] != 2)
+	   return Error(playerid, "You dont have Faction Sags!");
+    if(!IsPlayerInRangeOfPoint(playerid, 3.0,  1271.29, -2021.10, 59.09)) return Error(playerid, "Anda harus berada di garasi sags!");
+	if(pData[playerid][pInjured] >= 1) return Error(playerid, "Kamu tidak bisa melakukan ini!");
+	if(!IsPlayerInAnyVehicle(playerid)) return Error(playerid, "You must be in Vehicle");
+    new vehicleid = GetPlayerVehicleID(playerid);
+	if(GovVeh{vehicleid})
+	{
+		DestroyVehicle(vehicleid);
+		return GovVeh{vehicleid} = false;
+	}
+    return 1;
+}
+
 CMD:sapdvehicle(playerid) //sapd vehicle spawn
 {
 	if(pData[playerid][pFaction] != 1)
