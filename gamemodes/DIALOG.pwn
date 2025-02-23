@@ -17170,6 +17170,81 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 			}
 		}
 	}
+	if(dialogid == DIALOG_PVSAGS)
+	{
+		if(response)
+		{
+			switch(listitem)
+			{
+				case 0:
+				{
+		            static
+                        vehicleid;
+
+	                vehicleid = CreateVehicle(405, 1274.17,-2037.36,59.04,86.46,7,7, 1800);
+					GovVeh{vehicleid} = true;
+
+                    PutPlayerInVehicle(playerid, vehicleid, 0);
+                    SetVehicleNumberPlate(vehicleid, "SAGS");
+				}
+				case 1:
+				{
+		            static
+                        vehicleid;
+
+	                vehicleid = CreateVehicle(409, 1274.17,-2037.36,59.04,86.46,7,7, 1800);
+                    GovVeh{vehicleid} = true;
+
+                    PutPlayerInVehicle(playerid, vehicleid, 0);
+                    SetVehicleNumberPlate(vehicleid, "SAGS");
+				}
+				case 2:
+				{
+		            static
+                        vehicleid;
+
+	                vehicleid = CreateVehicle(490, 1274.17,-2037.36,59.04,86.46,7,7, 1800);
+					GovVeh{vehicleid} = true;
+
+                    PutPlayerInVehicle(playerid, vehicleid, 0);
+                    SetVehicleNumberPlate(vehicleid, "SAGS");
+				}
+				case 3:
+				{
+		            static
+                        vehicleid;
+
+	                vehicleid = CreateVehicle(521, 1274.17,-2037.36,59.04,86.46,7,7, 1800);
+                    GovVeh{vehicleid} = true;
+
+                    PutPlayerInVehicle(playerid, vehicleid, 0);
+                    SetVehicleNumberPlate(vehicleid, "SAGS");
+				}
+				case 4:
+				{
+		            static
+                        vehicleid;
+
+	                vehicleid = CreateVehicle(586, 1274.17,-2037.36,59.04,86.46,7,7, 1800);
+					GovVeh{vehicleid} = true;
+
+                    PutPlayerInVehicle(playerid, vehicleid, 0);
+                    SetVehicleNumberPlate(vehicleid, "SAGS");
+				}
+				case 5:
+				{
+		            static
+                        vehicleid;
+
+	                vehicleid = CreateVehicle(487, 1274.17,-2037.36,59.04,86.46,7,7, 1800);
+					GovVeh{vehicleid} = true;
+
+                    PutPlayerInVehicle(playerid, vehicleid, 0);
+                    SetVehicleNumberPlate(vehicleid, "SAGS");
+				}
+			}
+		}
+	}
 	if(dialogid == DIALOG_PVSAMD)
 	{
 		if(response)
