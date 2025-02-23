@@ -12,7 +12,7 @@ enum DealerVariabel
 	dealerLocked,
 	dealerMoney,
 	dVisit,
-	dP[10],
+	dP[14],
 	Float:dealerPosX,
 	Float:dealerPosY,
 	Float:dealerPosZ,
@@ -783,7 +783,7 @@ Dealer_ProductMenu(playerid, dealerid)
         return 0;
 
     static
-        string[512];
+        string[3000];
 
     switch (DealerData[dealerid][dealerType])
     {
@@ -805,7 +805,7 @@ Dealer_ProductMenu(playerid, dealerid)
         }
         case 2:
         {
-            format(string, sizeof(string), "Produk\tHarga\n{ffffff}Landstalker\t{7fff00}%s\n{ffffff}Vodoo\t{7fff00}%s\n{ffffff}Esperanto\t{7fff00}%s\n{ffffff}Preimer\t{7fff00}%s\n{ffffff}Previon\t{7fff00}%s\n{ffffff}Glendale\t{7fff00}%s\n{ffffff}Oceanic\t{7fff00}%s\n{ffffff}Hermes\t{7fff00}%s\n{ffffff}Sabre\t{7fff00}%s\n{ffffff}Comet\t{7fff00}%s",
+            format(string, sizeof(string), "Produk\tHarga\n{ffffff}Landstalker\t{7fff00}%s\n{ffffff}Vodoo\t{7fff00}%s\n{ffffff}Esperanto\t{7fff00}%s\n{ffffff}Preimer\t{7fff00}%s\n{ffffff}Previon\t{7fff00}%s\n{ffffff}Glendale\t{7fff00}%s\n{ffffff}Oceanic\t{7fff00}%s\n{ffffff}Hermes\t{7fff00}%s\n{ffffff}Sabre\t{7fff00}%s\n{ffffff}Comet\t{7fff00}%s\n{ffffff}Rancher\t{7fff00}%s\n{ffffff}Huntley\t{7fff00}%s\n{ffffff}Moonbeam\t{7fff00}%s\n{ffffff}Regina\t{7fff00}%s",
                 FormatMoney(DealerData[dealerid][dP][0]),
                 FormatMoney(DealerData[dealerid][dP][1]),
                 FormatMoney(DealerData[dealerid][dP][2]),
@@ -815,7 +815,11 @@ Dealer_ProductMenu(playerid, dealerid)
 				FormatMoney(DealerData[dealerid][dP][6]),
                 FormatMoney(DealerData[dealerid][dP][7]),
                 FormatMoney(DealerData[dealerid][dP][8]),
-                FormatMoney(DealerData[dealerid][dP][9])
+                FormatMoney(DealerData[dealerid][dP][9]),
+				FormatMoney(DealerData[dealerid][dP][10]),
+                FormatMoney(DealerData[dealerid][dP][11]),
+                FormatMoney(DealerData[dealerid][dP][12]),
+				FormatMoney(DealerData[dealerid][dP][13])
             );
             ShowPlayerDialog(playerid, DEALER_EDITPROD,DIALOG_STYLE_TABLIST_HEADERS, "Dealer: Modify Item", string, "Modify", "Cancel");
         }
@@ -930,8 +934,8 @@ DealerBuyVehicle(playerid, dealerid)
                 SendClientMessage(playerid, COLOR_RED, "Anda sudah mencapai batas pembelian kendaraan.");
                 return 1;
             }
-            new str[1024];
-			format(str, sizeof(str), "%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s",
+            new str[3000];
+			format(str, sizeof(str), "%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s\n%s\t{7fff00}%s",
 			GetVehicleModelName(400), FormatMoney(DealerData[dealerid][dP][0]),
 			GetVehicleModelName(412), FormatMoney(DealerData[dealerid][dP][1]),
 			GetVehicleModelName(419), FormatMoney(DealerData[dealerid][dP][2]),
@@ -941,7 +945,11 @@ DealerBuyVehicle(playerid, dealerid)
 			GetVehicleModelName(467), FormatMoney(DealerData[dealerid][dP][6]),
 			GetVehicleModelName(474), FormatMoney(DealerData[dealerid][dP][7]),
 			GetVehicleModelName(475), FormatMoney(DealerData[dealerid][dP][8]),
-			GetVehicleModelName(480), FormatMoney(DealerData[dealerid][dP][9])
+			GetVehicleModelName(480), FormatMoney(DealerData[dealerid][dP][9]),
+			GetVehicleModelName(489), FormatMoney(DealerData[dealerid][dP][10]),
+			GetVehicleModelName(579), FormatMoney(DealerData[dealerid][dP][11]),
+			GetVehicleModelName(418), FormatMoney(DealerData[dealerid][dP][12]),
+			GetVehicleModelName(479), FormatMoney(DealerData[dealerid][dP][13])
 			);
 
 			ShowPlayerDialog(playerid, DIALOG_BUYCARSVEHICLE, DIALOG_STYLE_LIST, "Cars Dealership", str, "Buy", "Close");
@@ -1981,6 +1989,190 @@ hook OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 						if(price == 0)
 							return Error(playerid, "Harga produk belum di setel oleh pemilik dealer");
 						new modelid = 480;
+						new tstr[128];
+						price = DealerData[dealerid][dP][9];
+						pData[playerid][pBuyPvModel] = modelid;
+						format(tstr, sizeof(tstr), ""WHITE_E"Anda akan membeli kendaraan "PINK_E"%s "WHITE_E"dengan harga "LG_E"%s", GetVehicleModelName(modelid), FormatMoney(price));
+						if(pData[playerid][pMoney] < price)
+						{
+							Error(playerid, "Uang anda tidak mencukupi.!");
+							return 1;
+						}
+						new lenzvip3 = pData[playerid][pVip] + 4;
+						new count = 0, limit = MAX_PLAYER_VEHICLE + lenzvip3;
+						foreach(new ii : PVehicles)
+						{
+							if(pvData[ii][cOwner] == pData[playerid][pID])
+								count++;
+						}
+						if(count >= limit)
+						{
+							Error(playerid, "Slot kendaraan anda sudah penuh, silahkan jual beberapa kendaraan anda terlebih dahulu!");
+							return 1;
+						}
+						new cQuery[1024];
+						new Float:x,Float:y,Float:z, Float:a;
+						new model, color1, color2;
+						DealerData[dealerid][dealerMoney] += price;
+						DealerData[dealerid][dealerStock]--;
+						if(DealerData[dealerid][dealerStock] < 0)
+							return Error(playerid, "This dealer is out of stock product.");
+						GivePlayerMoneyEx(playerid, -price);
+						SendNearbyMessage(playerid, 30.0, COLOR_PURPLE, "** %s Purchase a vehicle at a dealership %s ", ReturnName(playerid), DealerData[dealerid][dealerName]);
+						color1 = 1;
+						color2 = 1;
+						model = modelid;
+						x = DealerData[dealerid][dealerPointX];
+						y = DealerData[dealerid][dealerPointY];
+						z = DealerData[dealerid][dealerPointZ];
+						DealerSave(dealerid);
+						DealerRefresh(dealerid);
+						mysql_format(g_SQL, cQuery, sizeof(cQuery), "INSERT INTO `vehicle` (`owner`, `model`, `color1`, `color2`, `price`, `x`, `y`, `z`, `a`) VALUES (%d, %d, %d, %d, %d, '%f', '%f', '%f', '%f')", pData[playerid][pID], model, color1, color2, price, x, y, z, a);
+						mysql_tquery(g_SQL, cQuery, "OnVehDealer", "ddddddffff", playerid, pData[playerid][pID], model, color1, color2, price, x, y, z, a);
+					}
+					case 10:
+					{
+						if(price == 0)
+							return Error(playerid, "Harga produk belum di setel oleh pemilik dealer");
+						new modelid = 489;
+						new tstr[128];
+						price = DealerData[dealerid][dP][9];
+						pData[playerid][pBuyPvModel] = modelid;
+						format(tstr, sizeof(tstr), ""WHITE_E"Anda akan membeli kendaraan "PINK_E"%s "WHITE_E"dengan harga "LG_E"%s", GetVehicleModelName(modelid), FormatMoney(price));
+						if(pData[playerid][pMoney] < price)
+						{
+							Error(playerid, "Uang anda tidak mencukupi.!");
+							return 1;
+						}
+						new lenzvip3 = pData[playerid][pVip] + 4;
+						new count = 0, limit = MAX_PLAYER_VEHICLE + lenzvip3;
+						foreach(new ii : PVehicles)
+						{
+							if(pvData[ii][cOwner] == pData[playerid][pID])
+								count++;
+						}
+						if(count >= limit)
+						{
+							Error(playerid, "Slot kendaraan anda sudah penuh, silahkan jual beberapa kendaraan anda terlebih dahulu!");
+							return 1;
+						}
+						new cQuery[1024];
+						new Float:x,Float:y,Float:z, Float:a;
+						new model, color1, color2;
+						DealerData[dealerid][dealerMoney] += price;
+						DealerData[dealerid][dealerStock]--;
+						if(DealerData[dealerid][dealerStock] < 0)
+							return Error(playerid, "This dealer is out of stock product.");
+						GivePlayerMoneyEx(playerid, -price);
+						SendNearbyMessage(playerid, 30.0, COLOR_PURPLE, "** %s Purchase a vehicle at a dealership %s ", ReturnName(playerid), DealerData[dealerid][dealerName]);
+						color1 = 1;
+						color2 = 1;
+						model = modelid;
+						x = DealerData[dealerid][dealerPointX];
+						y = DealerData[dealerid][dealerPointY];
+						z = DealerData[dealerid][dealerPointZ];
+						DealerSave(dealerid);
+						DealerRefresh(dealerid);
+						mysql_format(g_SQL, cQuery, sizeof(cQuery), "INSERT INTO `vehicle` (`owner`, `model`, `color1`, `color2`, `price`, `x`, `y`, `z`, `a`) VALUES (%d, %d, %d, %d, %d, '%f', '%f', '%f', '%f')", pData[playerid][pID], model, color1, color2, price, x, y, z, a);
+						mysql_tquery(g_SQL, cQuery, "OnVehDealer", "ddddddffff", playerid, pData[playerid][pID], model, color1, color2, price, x, y, z, a);
+					}
+					case 11:
+					{
+						if(price == 0)
+							return Error(playerid, "Harga produk belum di setel oleh pemilik dealer");
+						new modelid = 579;
+						new tstr[128];
+						price = DealerData[dealerid][dP][9];
+						pData[playerid][pBuyPvModel] = modelid;
+						format(tstr, sizeof(tstr), ""WHITE_E"Anda akan membeli kendaraan "PINK_E"%s "WHITE_E"dengan harga "LG_E"%s", GetVehicleModelName(modelid), FormatMoney(price));
+						if(pData[playerid][pMoney] < price)
+						{
+							Error(playerid, "Uang anda tidak mencukupi.!");
+							return 1;
+						}
+						new lenzvip3 = pData[playerid][pVip] + 4;
+						new count = 0, limit = MAX_PLAYER_VEHICLE + lenzvip3;
+						foreach(new ii : PVehicles)
+						{
+							if(pvData[ii][cOwner] == pData[playerid][pID])
+								count++;
+						}
+						if(count >= limit)
+						{
+							Error(playerid, "Slot kendaraan anda sudah penuh, silahkan jual beberapa kendaraan anda terlebih dahulu!");
+							return 1;
+						}
+						new cQuery[1024];
+						new Float:x,Float:y,Float:z, Float:a;
+						new model, color1, color2;
+						DealerData[dealerid][dealerMoney] += price;
+						DealerData[dealerid][dealerStock]--;
+						if(DealerData[dealerid][dealerStock] < 0)
+							return Error(playerid, "This dealer is out of stock product.");
+						GivePlayerMoneyEx(playerid, -price);
+						SendNearbyMessage(playerid, 30.0, COLOR_PURPLE, "** %s Purchase a vehicle at a dealership %s ", ReturnName(playerid), DealerData[dealerid][dealerName]);
+						color1 = 1;
+						color2 = 1;
+						model = modelid;
+						x = DealerData[dealerid][dealerPointX];
+						y = DealerData[dealerid][dealerPointY];
+						z = DealerData[dealerid][dealerPointZ];
+						DealerSave(dealerid);
+						DealerRefresh(dealerid);
+						mysql_format(g_SQL, cQuery, sizeof(cQuery), "INSERT INTO `vehicle` (`owner`, `model`, `color1`, `color2`, `price`, `x`, `y`, `z`, `a`) VALUES (%d, %d, %d, %d, %d, '%f', '%f', '%f', '%f')", pData[playerid][pID], model, color1, color2, price, x, y, z, a);
+						mysql_tquery(g_SQL, cQuery, "OnVehDealer", "ddddddffff", playerid, pData[playerid][pID], model, color1, color2, price, x, y, z, a);
+					}
+					case 12:
+					{
+						if(price == 0)
+							return Error(playerid, "Harga produk belum di setel oleh pemilik dealer");
+						new modelid = 418;
+						new tstr[128];
+						price = DealerData[dealerid][dP][9];
+						pData[playerid][pBuyPvModel] = modelid;
+						format(tstr, sizeof(tstr), ""WHITE_E"Anda akan membeli kendaraan "PINK_E"%s "WHITE_E"dengan harga "LG_E"%s", GetVehicleModelName(modelid), FormatMoney(price));
+						if(pData[playerid][pMoney] < price)
+						{
+							Error(playerid, "Uang anda tidak mencukupi.!");
+							return 1;
+						}
+						new lenzvip3 = pData[playerid][pVip] + 4;
+						new count = 0, limit = MAX_PLAYER_VEHICLE + lenzvip3;
+						foreach(new ii : PVehicles)
+						{
+							if(pvData[ii][cOwner] == pData[playerid][pID])
+								count++;
+						}
+						if(count >= limit)
+						{
+							Error(playerid, "Slot kendaraan anda sudah penuh, silahkan jual beberapa kendaraan anda terlebih dahulu!");
+							return 1;
+						}
+						new cQuery[1024];
+						new Float:x,Float:y,Float:z, Float:a;
+						new model, color1, color2;
+						DealerData[dealerid][dealerMoney] += price;
+						DealerData[dealerid][dealerStock]--;
+						if(DealerData[dealerid][dealerStock] < 0)
+							return Error(playerid, "This dealer is out of stock product.");
+						GivePlayerMoneyEx(playerid, -price);
+						SendNearbyMessage(playerid, 30.0, COLOR_PURPLE, "** %s Purchase a vehicle at a dealership %s ", ReturnName(playerid), DealerData[dealerid][dealerName]);
+						color1 = 1;
+						color2 = 1;
+						model = modelid;
+						x = DealerData[dealerid][dealerPointX];
+						y = DealerData[dealerid][dealerPointY];
+						z = DealerData[dealerid][dealerPointZ];
+						DealerSave(dealerid);
+						DealerRefresh(dealerid);
+						mysql_format(g_SQL, cQuery, sizeof(cQuery), "INSERT INTO `vehicle` (`owner`, `model`, `color1`, `color2`, `price`, `x`, `y`, `z`, `a`) VALUES (%d, %d, %d, %d, %d, '%f', '%f', '%f', '%f')", pData[playerid][pID], model, color1, color2, price, x, y, z, a);
+						mysql_tquery(g_SQL, cQuery, "OnVehDealer", "ddddddffff", playerid, pData[playerid][pID], model, color1, color2, price, x, y, z, a);
+					}
+					case 13:
+					{
+						if(price == 0)
+							return Error(playerid, "Harga produk belum di setel oleh pemilik dealer");
+						new modelid = 479;
 						new tstr[128];
 						price = DealerData[dealerid][dP][9];
 						pData[playerid][pBuyPvModel] = modelid;
