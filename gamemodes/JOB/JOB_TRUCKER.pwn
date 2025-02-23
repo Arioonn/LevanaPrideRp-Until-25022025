@@ -203,7 +203,7 @@ CMD:boxcomp(playerid, params[])
 		if(!strcmp(params, "buy", true))
 		{
 			new rego = 10;
-			if(!IsPlayerInRangeOfPoint(playerid, 5.0, 314.88, 926.79, 20.41))
+			if(!IsPlayerInRangeOfPoint(playerid, 5.0, 659.86, 1267.55, 12.89))
 				return Error(playerid, "Kamu tidak berada di pembelian box");
 			if(pData[playerid][CarryingBox] == true)
 				return Error(playerid, "Kamu masih membawa creat component!");
