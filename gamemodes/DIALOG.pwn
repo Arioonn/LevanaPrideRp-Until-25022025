@@ -300,7 +300,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				}
 				case 2:
 				{
-					ShowPlayerDialog(playerid, DIALOG_SERVERNAME, DIALOG_STYLE_LIST, "HUD Server Name", "Show\nHide", "Confirm", "Close");
+					ShowPlayerDialog(playerid, DIALOG_SERVERNAME, DIALOG_STYLE_LIST, "HUD Server Name", "V1\nHide\nV2\nHide", "Confirm", "Close");
 				}
 				case 3:
 				{
@@ -380,6 +380,19 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 					TextDrawHideForPlayer(playerid, NamaServerNew[0]);
 					TextDrawHideForPlayer(playerid, NamaServerNew[1]);
 					TextDrawHideForPlayer(playerid, NamaServerNew[2]);
+				}
+				case 2:
+				{
+					pData[playerid][pServerName] = 2;
+					TextDrawShowForPlayer(playerid, NamaServerByExe[0]);
+					TextDrawShowForPlayer(playerid, NamaServerByExe[1]);
+				
+				}
+				case 3:
+				{
+					pData[playerid][pServerName] = 0;
+					TextDrawHideForPlayer(playerid, NamaServerByExe[0]);
+					TextDrawHideForPlayer(playerid, NamaServerByExe[1]);
 				}
 			}
 		}
