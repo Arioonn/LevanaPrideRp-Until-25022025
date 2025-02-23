@@ -11687,11 +11687,17 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				format(mstr, sizeof(mstr), "{F6F6F6}You have {7fff00}%s {F6F6F6}in your bank account.", FormatMoney(pData[playerid][pBankMoney]));
 				ShowPlayerDialog(playerid, DIALOG_UNUSED, DIALOG_STYLE_MSGBOX, ""GREY3_E"Bank", mstr, "Close", "");
 			}
-			case 1: // Transfer Money
+			case 1: // Withdraw Money
+			{
+				new mstr[128];
+				format(mstr, sizeof(mstr), ""WHITE_E"My Balance: {7fff00}%s", FormatMoney(pData[playerid][pBankMoney]));
+				ShowPlayerDialog(playerid, DIALOG_ATMWITHDRAW, DIALOG_STYLE_LIST, mstr, "{7fff00}$50\n{7fff00}$200\n{7fff00}$500\n{7fff00}$1.000\n{7fff00}$5.000", "Withdraw", "Cancel");
+			}
+			case 2: // Transfer Money
 			{
 				ShowPlayerDialog(playerid, DIALOG_BANKREKENING, DIALOG_STYLE_INPUT, ""GREY3_E"Bank", "Masukan jumlah uang:", "Transfer", "Cancel");
 			}
-			case 2: //Paycheck
+			case 3: //Paycheck
 			{
 				DisplayPaycheck(playerid);
 			}
