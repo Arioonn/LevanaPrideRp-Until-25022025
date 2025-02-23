@@ -19,7 +19,7 @@ CMD:menu(playerid, params[])
 {
     if(IsPlayerInRangeOfPoint(playerid,10.0,333.9329,-1837.6069,4.2963))
     {
-        ShowPlayerDialog(playerid, DIALOG_MENU, DIALOG_STYLE_LIST, "MENU PEDAGANG (beta)","Snack\nSprunk","Select","Close");
+        ShowPlayerDialog(playerid, DIALOG_MENU, DIALOG_STYLE_LIST, "MENU PEDAGANG (beta)","Burger\nMilk","Select","Close");
 	}
 	return 1;
 }
