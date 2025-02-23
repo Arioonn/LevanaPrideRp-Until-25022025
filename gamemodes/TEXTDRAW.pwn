@@ -9,6 +9,7 @@ new Text:TextTime, Text:TextDate;
 new Text:AnimationTD;
 
 //DevVinzz
+new PlayerText:TD_INJURED[MAX_PLAYERS][5];
 new Text: TD_LOGINBYEXECUTIVE[5];
 new PlayerText:HbeJgrpCuy[MAX_PLAYERS][8];
 new PlayerText:JGMVSPEED[MAX_PLAYERS];
@@ -107,6 +108,76 @@ new PlayerText:PlayerCrate[MAX_PLAYERS][2];
 CreatePlayerTextDraws(playerid) {
 
     //DevVinzz
+    TD_INJURED[playerid][0] = CreatePlayerTextDraw(playerid, 320.000000, 0.000000, "_");
+	PlayerTextDrawFont(playerid, TD_INJURED[playerid][0], 1);
+	PlayerTextDrawLetterSize(playerid, TD_INJURED[playerid][0], 1000.000000, 1000.000000);
+	PlayerTextDrawTextSize(playerid, TD_INJURED[playerid][0], 1000.000000, 1000.000000);
+	PlayerTextDrawSetOutline(playerid, TD_INJURED[playerid][0], 1);
+	PlayerTextDrawSetShadow(playerid, TD_INJURED[playerid][0], 0);
+	PlayerTextDrawAlignment(playerid, TD_INJURED[playerid][0], 2);
+	PlayerTextDrawColor(playerid, TD_INJURED[playerid][0], -1);
+	PlayerTextDrawBackgroundColor(playerid, TD_INJURED[playerid][0], 255);
+	PlayerTextDrawBoxColor(playerid, TD_INJURED[playerid][0], -16777046);
+	PlayerTextDrawUseBox(playerid, TD_INJURED[playerid][0], 1);
+	PlayerTextDrawSetProportional(playerid, TD_INJURED[playerid][0], 1);
+	PlayerTextDrawSetSelectable(playerid, TD_INJURED[playerid][0], 0);
+
+	TD_INJURED[playerid][1] = CreatePlayerTextDraw(playerid, 320.000000, 350.000000, "Tekan [N] Untuk Mengirim Sinyal");
+	PlayerTextDrawFont(playerid, TD_INJURED[playerid][1], 1);
+	PlayerTextDrawLetterSize(playerid, TD_INJURED[playerid][1], 0.300000, 1.500000);
+	PlayerTextDrawTextSize(playerid, TD_INJURED[playerid][1], 400.000000, 500.000000);
+	PlayerTextDrawSetOutline(playerid, TD_INJURED[playerid][1], 0);
+	PlayerTextDrawSetShadow(playerid, TD_INJURED[playerid][1], 0);
+	PlayerTextDrawAlignment(playerid, TD_INJURED[playerid][1], 2);
+	PlayerTextDrawColor(playerid, TD_INJURED[playerid][1], -1);
+	PlayerTextDrawBackgroundColor(playerid, TD_INJURED[playerid][1], 255);
+	PlayerTextDrawBoxColor(playerid, TD_INJURED[playerid][1], 50);
+	PlayerTextDrawUseBox(playerid, TD_INJURED[playerid][1], 0);
+	PlayerTextDrawSetProportional(playerid, TD_INJURED[playerid][1], 1);
+	PlayerTextDrawSetSelectable(playerid, TD_INJURED[playerid][1], 0);
+
+	TD_INJURED[playerid][2] = CreatePlayerTextDraw(playerid, 320.000000, 365.000000, "Tekan [H] Jika Tidak Terlihat Oleh Player Lain");
+	PlayerTextDrawFont(playerid, TD_INJURED[playerid][2], 1);
+	PlayerTextDrawLetterSize(playerid, TD_INJURED[playerid][2], 0.300000, 1.500000);
+	PlayerTextDrawTextSize(playerid, TD_INJURED[playerid][2], 400.000000, 500.000000);
+	PlayerTextDrawSetOutline(playerid, TD_INJURED[playerid][2], 0);
+	PlayerTextDrawSetShadow(playerid, TD_INJURED[playerid][2], 0);
+	PlayerTextDrawAlignment(playerid, TD_INJURED[playerid][2], 2);
+	PlayerTextDrawColor(playerid, TD_INJURED[playerid][2], -1);
+	PlayerTextDrawBackgroundColor(playerid, TD_INJURED[playerid][2], 255);
+	PlayerTextDrawBoxColor(playerid, TD_INJURED[playerid][2], 50);
+	PlayerTextDrawUseBox(playerid, TD_INJURED[playerid][2], 0);
+	PlayerTextDrawSetProportional(playerid, TD_INJURED[playerid][2], 1);
+	PlayerTextDrawSetSelectable(playerid, TD_INJURED[playerid][2], 0);
+
+	TD_INJURED[playerid][3] = CreatePlayerTextDraw(playerid, 320.000000, 380.000000, "Tekan [Y] Untuk Respawn Kedalam Interior Rumah Sakit");
+	PlayerTextDrawFont(playerid, TD_INJURED[playerid][3], 1);
+	PlayerTextDrawLetterSize(playerid, TD_INJURED[playerid][3], 0.300000, 1.500000);
+	PlayerTextDrawTextSize(playerid, TD_INJURED[playerid][3], 400.000000, 500.000000);
+	PlayerTextDrawSetOutline(playerid, TD_INJURED[playerid][3], 0);
+	PlayerTextDrawSetShadow(playerid, TD_INJURED[playerid][3], 0);
+	PlayerTextDrawAlignment(playerid, TD_INJURED[playerid][3], 2);
+	PlayerTextDrawColor(playerid, TD_INJURED[playerid][3], -1);
+	PlayerTextDrawBackgroundColor(playerid, TD_INJURED[playerid][3], 255);
+	PlayerTextDrawBoxColor(playerid, TD_INJURED[playerid][3], 50);
+	PlayerTextDrawUseBox(playerid, TD_INJURED[playerid][3], 0);
+	PlayerTextDrawSetProportional(playerid, TD_INJURED[playerid][3], 1);
+	PlayerTextDrawSetSelectable(playerid, TD_INJURED[playerid][3], 0);
+
+	TD_INJURED[playerid][4] = CreatePlayerTextDraw(playerid, 320.000000, 395.000000, "Untuk Melakukan Respawn Anda Perlu Menunggu 500 Detik");
+	PlayerTextDrawFont(playerid, TD_INJURED[playerid][4], 1);
+	PlayerTextDrawLetterSize(playerid, TD_INJURED[playerid][4], 0.300000, 1.500000);
+	PlayerTextDrawTextSize(playerid, TD_INJURED[playerid][4], 400.000000, 500.000000);
+	PlayerTextDrawSetOutline(playerid, TD_INJURED[playerid][4], 0);
+	PlayerTextDrawSetShadow(playerid, TD_INJURED[playerid][4], 0);
+	PlayerTextDrawAlignment(playerid, TD_INJURED[playerid][4], 2);
+	PlayerTextDrawColor(playerid, TD_INJURED[playerid][4], -1);
+	PlayerTextDrawBackgroundColor(playerid, TD_INJURED[playerid][4], 255);
+	PlayerTextDrawBoxColor(playerid, TD_INJURED[playerid][4], 50);
+	PlayerTextDrawUseBox(playerid, TD_INJURED[playerid][4], 0);
+	PlayerTextDrawSetProportional(playerid, TD_INJURED[playerid][4], 1);
+	PlayerTextDrawSetSelectable(playerid, TD_INJURED[playerid][4], 0);
+
     TD_LOGINBYEXECUTIVE[0] = TextDrawCreate(181.000, 97.000, "_");
 	TextDrawLetterSize(TD_LOGINBYEXECUTIVE[0], -0.008, 28.600);
 	TextDrawTextSize(TD_LOGINBYEXECUTIVE[0], 442.000, 0.000);
