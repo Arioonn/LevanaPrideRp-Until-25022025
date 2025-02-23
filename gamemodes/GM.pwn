@@ -6767,7 +6767,7 @@ ptask PlayerUpdate[999](playerid)
 		
 		if(GetPVarInt(playerid,"GiveUptime"))
         {
-            if((gettime()-GetPVarInt(playerid, "GiveUptime")) > 100)
+            if((gettime()-GetPVarInt(playerid, "GiveUptime")) > 900)
             {
                 Info(playerid, "Gunakan '/death' Untuk Spawn Ke ASGH.");
                 SetPVarInt(playerid, "GiveUptime", 0);

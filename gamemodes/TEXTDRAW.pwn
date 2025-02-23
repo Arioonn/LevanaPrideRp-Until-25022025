@@ -12,7 +12,7 @@ new Text:AnimationTD;
 new PlayerText:TD_INJURED[MAX_PLAYERS][5];
 new Text:NamaServerByExe[2];
 new Text: TD_LOGINBYEXECUTIVEV2[4];
-new Text: TD_LOGINBYEXECUTIVE[5];
+//new Text: TD_LOGINBYEXECUTIVE[5];
 new PlayerText:HbeJgrpCuy[MAX_PLAYERS][8];
 new PlayerText:JGMVSPEED[MAX_PLAYERS];
 new PlayerText:JGMVHP[MAX_PLAYERS];

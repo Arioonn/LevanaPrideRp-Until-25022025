@@ -444,8 +444,8 @@ CMD:death(playerid, params[])
 	if(pData[playerid][pArrest] > 0)
 		return Error(playerid, "Kamu tidak bisa melakukan ini saat tertangkap polisi!");
 
-    if((gettime()-GetPVarInt(playerid, "GiveUptime")) < 600)
-        return Error(playerid, "Kamu harus menunggu 10 menit untuk kembali kerumah sakit");
+    if((gettime()-GetPVarInt(playerid, "GiveUptime")) < 900)
+        return Error(playerid, "Kamu harus menunggu 15 menit untuk kembali kerumah sakit");
         
 	/*if(pMatiPukul[playerid] == 1)
 	{
