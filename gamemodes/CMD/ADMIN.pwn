@@ -1825,27 +1825,23 @@ CMD:facdespawn(playerid, params[])
 		if(pData[playerid][pHelper] < 3)
 			return PermissionError(playerid);
 
-	foreach(new i : Player)
+	new vehicleid = GetPlayerVehicleID(playerid);
+	if(GovVeh{vehicleid})
 	{
-		pData[i][pSpawnPD] = 0;
-		DestroyVehicle(pData[i][pSpawnPD]);
+		DestroyVehicle(vehicleid);
+		return GovVeh{vehicleid} = false;
 	}
 
-	for(new x;x<sizeof(SAGSVehicles);x++)
+	if(PolisiVeh{vehicleid})
 	{
-		if(IsVehicleEmpty(SAGSVehicles[x]))
-		{
-			SetVehicleToRespawn(SAGSVehicles[x]);
-			SetValidVehicleHealth(SAGSVehicles[x], 2000);
-			SetVehicleFuel(SAGSVehicles[x], 1000);
-			SwitchVehicleDoors(SAGSVehicles[x], false);
-		}
+		DestroyVehicle(vehicleid);
+		return PolisiVeh{vehicleid} = false;
 	}
 
-	foreach(new i : Player)
+	if(SamdVeh{vehicleid})
 	{
-		pData[i][pSpawnMD] = 0;
-		DestroyVehicle(pData[i][pSpawnMD]);
+		DestroyVehicle(vehicleid);
+		return SamdVeh{vehicleid} = false;
 	}
 
 	for(new x;x<sizeof(SANAVehicles);x++)
@@ -1856,6 +1852,14 @@ CMD:facdespawn(playerid, params[])
 			SetValidVehicleHealth(SANAVehicles[x], 2000);
 			SetVehicleFuel(SANAVehicles[x], 1000);
 			SwitchVehicleDoors(SANAVehicles[x], false);
+		}
+	}
+
+	foreach(new i : Player)
+	{
+	    if(IsPlayerInVehicle(i, vehicleid) && GetPlayerState(i) == PLAYER_STATE_DRIVER)
+	    {
+	        return 1;
 		}
 	}
 	SendStaffMessage(COLOR_LIGHTRED, "%s has respawned All Faction vehicles.", pData[playerid][pAdminname]);
