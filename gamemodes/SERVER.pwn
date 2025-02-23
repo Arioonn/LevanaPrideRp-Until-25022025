@@ -162,9 +162,9 @@ CreateServerPoint()
 	ObatText = CreateDynamic3DTextLabel(strings, COLOR_GREY, -1772.3304, -2013.1531, 1500.7853, 5.0); // product
 
 	//new box = ProductPrice*10;
-	CargoPickup = CreateDynamicPickup(1271, 23, 314.88, 926.79, 20.41, -1, -1, -1, 50);
-	format(strings, sizeof(strings), "[Create Component]\n"WHITE_E"Create Stock: "LG_E"%d\n\n"WHITE_E"Create Component Price: "LG_E"$10 /item\n"LB_E"/boxcomp buy", Product);
-	CargoText = CreateDynamic3DTextLabel(strings, COLOR_LBLUE, 314.88, 926.79, 20.41, 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1); // Vending Product
+	CargoPickup = CreateDynamicPickup(1271, 23, 659.86, 1267.55, 12.89, -1, -1, -1, 50);
+	format(strings, sizeof(strings), "[Crate Component]\n"WHITE_E"Crate Stock: "LG_E"%d\n\n"WHITE_E"Crate Component Price: "LG_E"$10 /item\n"LB_E"/boxcomp buy", Product);
+	CargoText = CreateDynamic3DTextLabel(strings, COLOR_LBLUE, 659.86, 1267.55, 12.89, 5.0, INVALID_PLAYER_ID, INVALID_VEHICLE_ID, 1); // Vending Product
 }
 
 Server_Percent(price)
