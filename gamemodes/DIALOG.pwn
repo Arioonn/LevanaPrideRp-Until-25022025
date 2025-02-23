@@ -5163,7 +5163,7 @@ public OnDialogResponse(playerid, dialogid, response, listitem, inputtext[])
 				case 10:
 				{
 					pData[playerid][pGpsActive] = 1;
-					SetPlayerRaceCheckpoint(playerid, 1, 314.88, 926.79, 20.41, 0.0, 0.0, 0.0, 3);//Create Shop
+					SetPlayerRaceCheckpoint(playerid, 1, 659.86, 1267.55, 12.89, 0.0, 0.0, 0.0, 3);//Crate Shop
 					Gps(playerid, "Active");
 				}
 			}
