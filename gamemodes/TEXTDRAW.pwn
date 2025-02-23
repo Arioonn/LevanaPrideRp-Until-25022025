@@ -10,6 +10,7 @@ new Text:AnimationTD;
 
 //DevVinzz
 new PlayerText:TD_INJURED[MAX_PLAYERS][5];
+new Text: TD_LOGINBYEXECUTIVEV2[4];
 new Text: TD_LOGINBYEXECUTIVE[5];
 new PlayerText:HbeJgrpCuy[MAX_PLAYERS][8];
 new PlayerText:JGMVSPEED[MAX_PLAYERS];
@@ -108,6 +109,62 @@ new PlayerText:PlayerCrate[MAX_PLAYERS][2];
 CreatePlayerTextDraws(playerid) {
 
     //DevVinzz
+    TD_LOGINBYEXECUTIVEV2[0] = TextDrawCreate(319.000000, 110.000000, "_");
+	TextDrawFont(TD_LOGINBYEXECUTIVEV2[0], 1);
+	TextDrawLetterSize(TD_LOGINBYEXECUTIVEV2[0], 400.000000, 25.000000);
+	TextDrawTextSize(TD_LOGINBYEXECUTIVEV2[0], 400.000000, 200.000000);
+	TextDrawSetOutline(TD_LOGINBYEXECUTIVEV2[0], 1);
+	TextDrawSetShadow(TD_LOGINBYEXECUTIVEV2[0], 0);
+	TextDrawAlignment(TD_LOGINBYEXECUTIVEV2[0], 2);
+	TextDrawColor(TD_LOGINBYEXECUTIVEV2[0], -1);
+	TextDrawBackgroundColor(TD_LOGINBYEXECUTIVEV2[0], 255);
+	TextDrawBoxColor(TD_LOGINBYEXECUTIVEV2[0], 135);
+	TextDrawUseBox(TD_LOGINBYEXECUTIVEV2[0], 1);
+	TextDrawSetProportional(TD_LOGINBYEXECUTIVEV2[0], 1);
+	TextDrawSetSelectable(TD_LOGINBYEXECUTIVEV2[0], 0);
+	
+	TD_LOGINBYEXECUTIVEV2[1] = TextDrawCreate(277.000000, 105.000000, "ROLEPLAY");
+	TextDrawFont(TD_LOGINBYEXECUTIVEV2[1], 1);
+	TextDrawLetterSize(TD_LOGINBYEXECUTIVEV2[1], 0.500000, 2.500000);
+	TextDrawTextSize(TD_LOGINBYEXECUTIVEV2[1], 400.000000, 17.000000);
+	TextDrawSetOutline(TD_LOGINBYEXECUTIVEV2[1], 2);
+	TextDrawSetShadow(TD_LOGINBYEXECUTIVEV2[1], 1);
+	TextDrawAlignment(TD_LOGINBYEXECUTIVEV2[1], 1);
+	TextDrawColor(TD_LOGINBYEXECUTIVEV2[1], -1);
+	TextDrawBackgroundColor(TD_LOGINBYEXECUTIVEV2[1], 255);
+	TextDrawBoxColor(TD_LOGINBYEXECUTIVEV2[1], 50);
+	TextDrawUseBox(TD_LOGINBYEXECUTIVEV2[1], 0);
+	TextDrawSetProportional(TD_LOGINBYEXECUTIVEV2[1], 1);
+	TextDrawSetSelectable(TD_LOGINBYEXECUTIVEV2[1], 0);
+	
+	TD_LOGINBYEXECUTIVEV2[2] = TextDrawCreate(259.000000, 87.000000, "LEVANAPRIDE");
+	TextDrawFont(TD_LOGINBYEXECUTIVEV2[2], 1);
+	TextDrawLetterSize(TD_LOGINBYEXECUTIVEV2[2], 0.550000, 2.900000);
+	TextDrawTextSize(TD_LOGINBYEXECUTIVEV2[2], 400.000000, 17.000000);
+	TextDrawSetOutline(TD_LOGINBYEXECUTIVEV2[2], 2);
+	TextDrawSetShadow(TD_LOGINBYEXECUTIVEV2[2], 0);
+	TextDrawAlignment(TD_LOGINBYEXECUTIVEV2[2], 1);
+	TextDrawColor(TD_LOGINBYEXECUTIVEV2[2], 16777215);
+	TextDrawBackgroundColor(TD_LOGINBYEXECUTIVEV2[2], 255);
+	TextDrawBoxColor(TD_LOGINBYEXECUTIVEV2[2], -206);
+	TextDrawUseBox(TD_LOGINBYEXECUTIVEV2[2], 0);
+	TextDrawSetProportional(TD_LOGINBYEXECUTIVEV2[2], 1);
+	TextDrawSetSelectable(TD_LOGINBYEXECUTIVEV2[2], 0);
+	
+	TD_LOGINBYEXECUTIVEV2[3] = TextDrawCreate(225.000000, 325.000000, "LevanaPride.net");
+	TextDrawFont(TD_LOGINBYEXECUTIVEV2[3], 1);
+	TextDrawLetterSize(TD_LOGINBYEXECUTIVEV2[3], 0.150000, 1.000000);
+	TextDrawTextSize(TD_LOGINBYEXECUTIVEV2[3], 400.000000, 17.000000);
+	TextDrawSetOutline(TD_LOGINBYEXECUTIVEV2[3], 2);
+	TextDrawSetShadow(TD_LOGINBYEXECUTIVEV2[3], 1);
+	TextDrawAlignment(TD_LOGINBYEXECUTIVEV2[3], 1);
+	TextDrawColor(TD_LOGINBYEXECUTIVEV2[3], 16777215);
+	TextDrawBackgroundColor(TD_LOGINBYEXECUTIVEV2[3], 255);
+	TextDrawBoxColor(TD_LOGINBYEXECUTIVEV2[3], 50);
+	TextDrawUseBox(TD_LOGINBYEXECUTIVEV2[3], 0);
+	TextDrawSetProportional(TD_LOGINBYEXECUTIVEV2[3], 1);
+	TextDrawSetSelectable(TD_LOGINBYEXECUTIVEV2[3], 0);
+
     TD_INJURED[playerid][0] = CreatePlayerTextDraw(playerid, 320.000000, 0.000000, "_");
 	PlayerTextDrawFont(playerid, TD_INJURED[playerid][0], 1);
 	PlayerTextDrawLetterSize(playerid, TD_INJURED[playerid][0], 1000.000000, 1000.000000);
@@ -178,7 +235,7 @@ CreatePlayerTextDraws(playerid) {
 	PlayerTextDrawSetProportional(playerid, TD_INJURED[playerid][4], 1);
 	PlayerTextDrawSetSelectable(playerid, TD_INJURED[playerid][4], 0);
 
-    TD_LOGINBYEXECUTIVE[0] = TextDrawCreate(181.000, 97.000, "_");
+    /*TD_LOGINBYEXECUTIVE[0] = TextDrawCreate(181.000, 97.000, "_");
 	TextDrawLetterSize(TD_LOGINBYEXECUTIVE[0], -0.008, 28.600);
 	TextDrawTextSize(TD_LOGINBYEXECUTIVE[0], 442.000, 0.000);
 	TextDrawAlignment(TD_LOGINBYEXECUTIVE[0], 1);
@@ -229,7 +286,7 @@ CreatePlayerTextDraws(playerid) {
 	TextDrawSetOutline(TD_LOGINBYEXECUTIVE[4], 1);
 	TextDrawBackgroundColor(TD_LOGINBYEXECUTIVE[4], 150);
 	TextDrawFont(TD_LOGINBYEXECUTIVE[4], 1);
-	TextDrawSetProportional(TD_LOGINBYEXECUTIVE[4], 1);
+	TextDrawSetProportional(TD_LOGINBYEXECUTIVE[4], 1);*/
 
 
     HbeJgrpCuy[playerid][0] = CreatePlayerTextDraw(playerid, 579.000000, 352.000000, "ld_bum:blkdot");
