@@ -2653,9 +2653,9 @@ public OnPlayerConnect(playerid)
 	PlayerPlaySound(playerid, 176, 0.0, 0.0, 0.0);
 
 	//DevVinzz
-	for(new i = 0; i < sizeof(TD_LOGINBYEXECUTIVE); i++)
+	for(new i = 0; i < sizeof(TD_LOGINBYEXECUTIVEV2); i++)
     {
-        TextDrawShowForPlayer(playerid, TD_LOGINBYEXECUTIVE[i]);
+        TextDrawShowForPlayer(playerid, TD_LOGINBYEXECUTIVEV2[i]);
     }
 	
 	return 1;
@@ -2925,9 +2925,9 @@ public OnPlayerSpawn(playerid)
 	SetPlayerSkillLevel(playerid, WEAPON_RIFLE, 1);
 	SetPlayerSkillLevel(playerid, WEAPON_SNIPER, 1);
 
-    for(new i = 0; i < sizeof(TD_LOGINBYEXECUTIVE); i++)
+    for(new i = 0; i < sizeof(TD_LOGINBYEXECUTIVEV2); i++)
     {
-        TextDrawHideForPlayer(playerid, TD_LOGINBYEXECUTIVE[i]);
+        TextDrawHideForPlayer(playerid, TD_LOGINBYEXECUTIVEV2[i]);
     }
 
 	return 1;
